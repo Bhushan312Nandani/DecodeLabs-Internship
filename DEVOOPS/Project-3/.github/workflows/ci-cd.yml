@@ -1,0 +1,357 @@
+# =============================================================
+#  PROJECT-3: The Automated Software Factory
+#  GitHub Actions CI/CD Pipeline — ci-cd.yml
+#
+#  ┌─────────────────────────────────────────────────────────┐
+#  │  PIPELINE ARCHITECTURE (The IPO Model)                  │
+#  │                                                         │
+#  │  INPUT  → Developer pushes code to GitHub               │
+#  │  PROCESS → This YAML blueprint is parsed & executed     │
+#  │  OUTPUT  → ✅ Green checkmark + running app on server   │
+#  │         OR ❌ Red X + notification (nothing broken ships)│
+#  └─────────────────────────────────────────────────────────┘
+#
+#  HIERARCHY:
+#    Workflow (this file)
+#      └── Jobs (parallel assembly lines)
+#            └── Steps (robot arms in each line)
+#
+#  KEY YAML RULES:
+#    ✔  Use SPACES for indentation — NEVER tabs
+#    ✔  Put reserved words like 'on' in quotes → "on:"
+#    ✔  Key-Value pairs: key: value
+#    ✔  Lists start with a dash: - item
+# =============================================================
+
+# ── WORKFLOW NAME ─────────────────────────────────────────────
+# Shown in the GitHub Actions tab — the factory's display name
+name: "🏭 Automated Software Factory — CI/CD Pipeline"
+
+
+# =============================================================
+#  TRIGGER: WAKING THE FACTORY
+#  The event(s) that start the entire workflow.
+#
+#  NOTE: "on" is a YAML boolean trap — it would be parsed as
+#  TRUE without quotes.  Always quote it: "on":
+# =============================================================
+"on":
+  push:
+    branches:
+      - main          # Full pipeline runs on main — the production branch
+      - "feature/*"   # CI-only (no deploy) runs on feature branches
+  pull_request:
+    branches:
+      - main          # PRs to main also trigger CI — blocks bad merges
+
+
+# =============================================================
+#  ENVIRONMENT VARIABLES
+#  Set once here, available to all jobs below.
+#  Non-sensitive config lives here.
+#  SECRETS (passwords, tokens) go in GitHub Secret Vault.
+# =============================================================
+env:
+  APP_NAME: "devops-automated-factory"       # Docker image name
+  PYTHON_VERSION: "3.11"                     # Pinned — same version everywhere
+  # ⚠️  NEVER put real secrets here.
+  # ⚠️  Use ${{ secrets.SECRET_NAME }} for passwords/tokens.
+
+
+# =============================================================
+#  JOBS
+#  Each job is an independent "assembly line" that:
+#    • Spins up a fresh runner (clean machine)
+#    • Can run in PARALLEL with other jobs (for speed)
+#    • Can DEPEND on other jobs via: needs: [job-name]
+# =============================================================
+jobs:
+
+  # ────────────────────────────────────────────────────────────
+  #  JOB 1: LINT
+  #  The first robot arm — checks code style BEFORE building.
+  #  Fastest job; catches typos and obvious errors in seconds.
+  # ────────────────────────────────────────────────────────────
+  lint:
+    name: "🔍 Code Quality Check (Linter)"
+    runs-on: ubuntu-latest    # Sterile build environment — fresh VM every run
+
+    steps:
+      # ── Step 1.1: Checkout ────────────────────────────────
+      # Downloads the repository code onto the runner.
+      # Without this, the runner has an empty workspace.
+      - name: "📥 Checkout Source Code"
+        uses: actions/checkout@v4
+        # 'uses' means: use a pre-built GitHub Action
+        # actions/checkout@v4 is the official code-download action
+
+      # ── Step 1.2: Python Setup ────────────────────────────
+      - name: "🐍 Set Up Python ${{ env.PYTHON_VERSION }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"    # Caches pip downloads — speeds up future runs
+
+      # ── Step 1.3: Install Linter ──────────────────────────
+      - name: "📦 Install Linter"
+        run: pip install flake8
+        # 'run' means: execute this shell command directly
+
+      # ── Step 1.4: Run Linter ──────────────────────────────
+      - name: "🔎 Run Flake8 Linter"
+        run: |
+          # --max-line-length=120: allows slightly longer lines
+          # --exclude: skip auto-generated or third-party files
+          flake8 app.py --max-line-length=120 --exclude=venv,__pycache__
+          echo "✅ Linting passed — code style is clean"
+
+
+  # ────────────────────────────────────────────────────────────
+  #  JOB 2: TEST — THE ULTIMATE GATEKEEPER
+  #  Runs AFTER lint passes (needs: [lint]).
+  #  If ANY test fails → pipeline stops → nothing ships.
+  #  This is the core of CI: automated quality enforcement.
+  # ────────────────────────────────────────────────────────────
+  test:
+    name: "🧪 Automated Test Suite (The Gatekeeper)"
+    runs-on: ubuntu-latest
+    needs: [lint]    # ← Depends on lint job — runs only if lint passes
+
+    steps:
+      - name: "📥 Checkout Source Code"
+        uses: actions/checkout@v4
+
+      - name: "🐍 Set Up Python ${{ env.PYTHON_VERSION }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      # ── Step 2.3: Install All Dependencies ────────────────
+      - name: "📦 Install Dependencies (Sterile Environment)"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          echo "✅ Sterile environment ready — all dependencies installed"
+          echo "🔒 Same versions as production — 'it works on my machine' is dead"
+
+      # ── Step 2.4: Run Full Test Suite ─────────────────────
+      - name: "🧪 Run pytest — All Tests Must Pass"
+        run: |
+          # -v           : verbose output — shows every test name in CI logs
+          # --tb=short   : short traceback — easier to read failures in logs
+          # --cov=app    : measure code coverage on app.py
+          # --cov-report : generate terminal + XML coverage reports
+          # --cov-fail-under=80 : FAIL the pipeline if coverage drops below 80%
+          pytest tests/ \
+            -v \
+            --tb=short \
+            --cov=app \
+            --cov-report=term-missing \
+            --cov-report=xml:coverage.xml \
+            --cov-fail-under=80
+
+      # ── Step 2.5: Upload Coverage Report ──────────────────
+      # Coverage report becomes a downloadable artifact in GitHub UI.
+      # Team leads can see which lines are NOT tested.
+      - name: "📊 Upload Coverage Report (Artifact)"
+        uses: actions/upload-artifact@v4
+        if: always()    # Run this step even if tests failed
+        with:
+          name: "coverage-report"
+          path: coverage.xml
+          retention-days: 30
+
+
+  # ────────────────────────────────────────────────────────────
+  #  JOB 3: BUILD — CREATE THE ARTIFACT
+  #  Runs only AFTER ALL tests pass (needs: [test]).
+  #  Builds the Docker image and pushes it to Docker Hub.
+  #  The image is the immutable, versioned deployable artifact.
+  # ────────────────────────────────────────────────────────────
+  build-and-push:
+    name: "🐳 Build & Push Docker Artifact"
+    runs-on: ubuntu-latest
+    needs: [test]    # ← Only runs if the Gatekeeper passes
+
+    # Only build & push on main branch pushes — not on PRs
+    # PRs only run lint + test (the safety checks)
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: "📥 Checkout Source Code"
+        uses: actions/checkout@v4
+
+      # ── Step 3.2: Authenticate with Docker Hub ────────────
+      # SECURITY CONCEPT: The GitHub Secret Vault
+      #
+      # BAD  (never do this):
+      #   username: "myuser"
+      #   password: "mypassword123"   ← hardcoded secret in code!
+      #
+      # GOOD (secrets injected at runtime from the Vault):
+      #   username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #   password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #
+      # How to set GitHub Secrets:
+      #   Repo → Settings → Secrets & Variables → Actions → New Secret
+      - name: "🔐 Login to Docker Hub (via GitHub Secret Vault)"
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          # These values are NEVER visible in logs — GitHub masks them
+
+      # ── Step 3.3: Extract Metadata ────────────────────────
+      # Generates smart image tags:
+      #   latest         → always points to newest main push
+      #   sha-abc1234    → commit-specific tag (enables exact rollback)
+      - name: "🏷️  Extract Image Metadata (Tags & Labels)"
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      # ── Step 3.4: Build & Push Docker Image ───────────────
+      # This is Stage 4: Creating the Artifact
+      - name: "🏗️  Build Docker Image & Push to Registry"
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # Build cache from Docker Hub — skips unchanged layers → fast rebuilds
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:buildcache
+          cache-to:   type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:buildcache,mode=max
+
+      - name: "✅ Artifact Published"
+        run: |
+          echo "🎉 Docker image pushed to Docker Hub!"
+          echo "📦 Image tags:"
+          echo "${{ steps.meta.outputs.tags }}"
+          echo ""
+          echo "🔁 Any team member can now pull this exact artifact:"
+          echo "   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest"
+
+
+  # ────────────────────────────────────────────────────────────
+  #  JOB 4: DEPLOY — SECURE SSH DEPLOYMENT (CD Stage)
+  #  The "automated delivery truck".
+  #  SSHes into the production server and pulls the new image.
+  #  Zero manual steps — the pipeline deploys itself.
+  # ────────────────────────────────────────────────────────────
+  deploy:
+    name: "🚀 Deploy to Production (CD)"
+    runs-on: ubuntu-latest
+    needs: [build-and-push]    # ← Only after artifact is published
+
+    # Same condition: only deploy on actual pushes to main
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    environment:
+      name: production    # GitHub "Environments" feature — can require approval
+      url: "http://${{ secrets.PROD_SERVER_IP }}"
+
+    steps:
+      - name: "📥 Checkout Source Code"
+        uses: actions/checkout@v4
+
+      # ── Step 4.2: Secure SSH Deployment ───────────────────
+      # SECURITY CONCEPT: SSH Key stored in GitHub Secret Vault
+      #
+      # How this works:
+      #   1. You generate an SSH key pair (public + private)
+      #   2. Public key  → added to ~/.ssh/authorized_keys on the server
+      #   3. Private key → stored as GitHub Secret (PROD_SSH_PRIVATE_KEY)
+      #   4. Pipeline uses the private key to authenticate to the server
+      #   5. No passwords ever touch the pipeline — pure key-based auth
+      - name: "🔑 Deploy via Secure SSH"
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:        ${{ secrets.PROD_SERVER_IP }}
+          username:    ${{ secrets.PROD_SERVER_USER }}
+          key:         ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          port:        22
+          # Commands run ON THE PRODUCTION SERVER:
+          script: |
+            echo "🚀 Deployment started at $(date)"
+            echo "📦 Pulling latest image from Docker Hub..."
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest
+
+            echo "🛑 Stopping old container (if running)..."
+            docker stop automated-factory || true   # 'true' prevents failure if container doesn't exist
+            docker rm   automated-factory || true
+
+            echo "▶️  Starting new container..."
+            docker run -d \
+              --name automated-factory \
+              --restart unless-stopped \
+              -p 80:5000 \
+              -e PORT=5000 \
+              ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest
+
+            echo "⏳ Waiting for health check..."
+            sleep 5
+            docker inspect --format='{{.State.Health.Status}}' automated-factory
+
+            echo "✅ Deployment complete! The factory is live."
+            echo "🌐 Access at: http://$(hostname -I | awk '{print $1}')"
+
+      # ── Step 4.3: Deployment Notification ─────────────────
+      - name: "📣 Deployment Success Notification"
+        run: |
+          echo "╔══════════════════════════════════════════╗"
+          echo "║  ✅  THE GREEN CHECKMARK ACHIEVED!       ║"
+          echo "║                                          ║"
+          echo "║  Commit:  ${{ github.sha }}              ║"
+          echo "║  Branch:  ${{ github.ref_name }}         ║"
+          echo "║  Author:  ${{ github.actor }}            ║"
+          echo "║  Status:  DEPLOYED TO PRODUCTION         ║"
+          echo "╚══════════════════════════════════════════╝"
+          echo ""
+          echo "🤖 Zero manual intervention required."
+          echo "🏆 The robot shipped the code flawlessly."
+
+
+  # ────────────────────────────────────────────────────────────
+  #  JOB 5: SUMMARY — PIPELINE DASHBOARD
+  #  Runs at the end regardless of success or failure.
+  #  Provides a human-readable summary in the GitHub Actions UI.
+  # ────────────────────────────────────────────────────────────
+  pipeline-summary:
+    name: "📋 Pipeline Summary Dashboard"
+    runs-on: ubuntu-latest
+    needs: [lint, test, build-and-push, deploy]
+    if: always()    # Always runs — even if previous jobs failed
+
+    steps:
+      - name: "📋 Print Pipeline Report"
+        run: |
+          echo "════════════════════════════════════════════════════"
+          echo "  🏭 AUTOMATED SOFTWARE FACTORY — PIPELINE REPORT"
+          echo "════════════════════════════════════════════════════"
+          echo ""
+          echo "  📋 Workflow : ${{ github.workflow }}"
+          echo "  🌿 Branch   : ${{ github.ref_name }}"
+          echo "  📝 Commit   : ${{ github.sha }}"
+          echo "  👤 Author   : ${{ github.actor }}"
+          echo "  ⏰ Time     : $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          echo "  PIPELINE STAGES:"
+          echo "  ┌────────────────────────────────────────────────┐"
+          echo "  │  Stage 1 │ Code Ingest     │ Triggered by push │"
+          echo "  │  Stage 2 │ Lint            │ Job: lint         │"
+          echo "  │  Stage 3 │ Test (Gatekeeper│ Job: test         │"
+          echo "  │  Stage 4 │ Build Artifact  │ Job: build-push   │"
+          echo "  │  Stage 5 │ Push Registry   │ Job: build-push   │"
+          echo "  │  Stage 6 │ SSH Deploy (CD) │ Job: deploy       │"
+          echo "  └────────────────────────────────────────────────┘"
+          echo ""
+          echo "  From Artisan → Assembly Line ✓"
+          echo "  Zero manual deployments ✓"
+          echo "  The robot ships the code flawlessly ✓"
+          echo "════════════════════════════════════════════════════"

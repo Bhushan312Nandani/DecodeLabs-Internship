@@ -1,0 +1,51 @@
+# =============================================================
+#  PROJECT-3: .gitignore
+#  CRITICAL SECURITY RULE: Never commit secrets to Git.
+#  Anything listed here is blocked from ever entering the repo.
+# =============================================================
+
+# ── THE MOST IMPORTANT LINE — Environment / Secret Files ──────
+# .env files hold API keys, DB passwords, SSH keys, etc.
+# If this line were missing and a dev ran: git add .
+# all their secrets would be pushed to GitHub (public!).
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# ── Python Runtime Artifacts ──────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual Environments ──────────────────────────────────────
+venv/
+env/
+ENV/
+.venv/
+
+# ── Testing & Coverage Artifacts ──────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.lcov
+
+# ── IDEs & Editor Config ──────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ── Docker ────────────────────────────────────────────────────
+# Never commit Docker credentials or daemon config
+.docker/
+docker-compose.override.yml

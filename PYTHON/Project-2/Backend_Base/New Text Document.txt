@@ -1,0 +1,42 @@
+from fastapi import HTTPException
+from prisma import Prisma
+
+db = Prisma()
+
+async def process_bank_transaction(amount_in_cents: int, description: str, idempotency_key: str):
+    """
+    THE BANK STRATEGY: 
+    Using a Prisma Transaction block to guarantee Atomicity and Consistency.
+    """
+    try:
+        # We open a transaction block. 
+        # If any step fails, NOTHING is saved to the database.
+        async with db.tx() as transaction:
+            
+            # Step 1: Check if this exact transaction was already processed (Isolation/Idempotency)
+            existing_tx = await transaction.transaction.find_unique(
+                where={"idempotencyKey": idempotency_key}
+            )
+            
+            if existing_tx:
+                raise ValueError("Duplicate request. Transaction already processed.")
+
+            # Step 2: Write the new financial truth to disk (Durability)
+            new_record = await transaction.transaction.create(
+                data={
+                    "amountInCents": amount_in_cents,
+                    "description": description,
+                    "idempotencyKey": idempotency_key,
+                    "status": "POSTED"
+                }
+            )
+            
+            # If we reach this line without errors, the database commits the state.
+            return new_record
+
+    except ValueError as e:
+        # The transaction is automatically rolled back here.
+        raise HTTPException(status_code=409, detail=str(e))
+    except Exception as e:
+        # Catch-all for database connection drops, timeouts, etc.
+        raise HTTPException(status_code=500, detail="Transaction failed. State rolled back.")

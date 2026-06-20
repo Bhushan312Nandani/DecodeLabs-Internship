@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume-as-a-Service</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
+        .upload-box { background: white; border: 2px dashed #ccc; padding: 40px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 15px;}
+        button:hover { background: #0056b3; }
+        #resultLink { display: block; margin-top: 20px; font-weight: bold; color: #28a745; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="upload-box">
+        <h2>Upload Your HTML Resume</h2>
+        <input type="file" id="resumeFile" accept=".html,.css">
+        <br><br>
+        
+        <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 8px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ccc;">
+        <br>
+        
+        <button onclick="uploadResume()">Publish to Cloud</button>
+        
+        <p id="status"></p>
+        <a id="resultLink" href="#" target="_blank" style="display:none;">🔗 View Your Live Resume Here!</a>
+    </div>
+
+    <script>
+        // ⚠️ PASTE YOUR LAMBDA FUNCTION URL HERE ⚠️
+        const LAMBDA_URL = "your-lambda-url-here";
+
+async function uploadResume() {
+            const fileInput = document.getElementById('resumeFile');
+            const statusText = document.getElementById('status');
+            const resultLink = document.getElementById('resultLink');
+            
+            // NEW: Grab the password from the hidden input box
+            const uploadPassword = document.getElementById('adminPassword').value;
+
+            if (fileInput.files.length === 0) {
+                alert("Please select a file first!");
+                return;
+            }
+
+            // NEW: Check if the password box is empty
+            if (!uploadPassword) {
+                alert("Please enter the Admin Password!");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            statusText.innerText = "Requesting secure 5-minute upload link...";
+            statusText.style.color = "black";
+            resultLink.style.display = "none";
+
+            try {
+                // We append the password to the URL so Lambda can check it
+                const response = await fetch(`${LAMBDA_URL}?secret=${uploadPassword}`);
+                const data = await response.json();
+
+                if (!response.ok) throw new Error(data.error || "Failed to get upload URL from backend.");
+
+                statusText.innerText = "Uploading securely to S3...";
+
+                const formData = new FormData();
+                Object.entries(data.fields).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
+                formData.append('file', file);
+
+                const uploadResponse = await fetch(data.uploadUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!uploadResponse.ok) throw new Error("S3 blocked the upload. File may be too large or wrong type.");
+
+                statusText.innerText = "Success! Your resume is live.";
+                statusText.style.color = "green";
+                resultLink.href = data.fileUrl;
+                resultLink.style.display = "inline-block";
+
+            } catch (error) {
+                statusText.innerText = "Upload failed: " + error.message;
+                statusText.style.color = "red";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

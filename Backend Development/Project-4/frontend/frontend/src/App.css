@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  /* This dark gradient makes the glassmorphism UI pop! */
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: white;
+  min-height: 100vh;
+  margin: 0;
+}

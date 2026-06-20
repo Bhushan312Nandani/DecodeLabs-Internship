@@ -1,0 +1,150 @@
+<?xml version="1.0" ?>
+<!--
+  REALISTIC CERAMIC COFFEE MUG
+  ─────────────────────────────
+  Weight : 300g  (real ceramic mug)
+  Height : 9.5cm
+  Radius : 3.8cm (body)
+  Handle : approximated with a box
+
+  This model uses the gazebo_ros_link_attacher plugin.
+  The gripper attaches to link "link" when picking.
+-->
+<sdf version="1.6">
+  <model name="my_coffee_cup">
+
+    <link name="link">
+
+      <!-- ══ INERTIA (realistic 300g mug) ══ -->
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.000350</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.000350</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.000220</izz>
+        </inertia>
+      </inertial>
+
+      <!-- ══ VISUAL: MUG BODY ══ -->
+      <visual name="body_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.038</radius>
+            <length>0.095</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <!-- Creamy white ceramic -->
+          <ambient>0.95 0.94 0.90 1.0</ambient>
+          <diffuse>0.92 0.90 0.85 1.0</diffuse>
+          <specular>0.4 0.4 0.4 1.0</specular>
+          <emissive>0.0 0.0 0.0 1.0</emissive>
+        </material>
+      </visual>
+
+      <!-- ══ VISUAL: MUG LIP (top ring) ══ -->
+      <visual name="lip_visual">
+        <pose>0 0 0.049 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.040</radius>
+            <length>0.006</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.90 0.88 0.84 1.0</ambient>
+          <diffuse>0.88 0.86 0.82 1.0</diffuse>
+          <specular>0.5 0.5 0.5 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- ══ VISUAL: MUG BASE (thicker bottom) ══ -->
+      <visual name="base_visual">
+        <pose>0 0 -0.043 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.037</radius>
+            <length>0.010</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.88 0.86 0.82 1.0</ambient>
+          <diffuse>0.85 0.83 0.79 1.0</diffuse>
+          <specular>0.3 0.3 0.3 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- ══ VISUAL: HANDLE ══ -->
+      <visual name="handle_outer_visual">
+        <pose>0.052 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.016 0.010 0.055</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.93 0.92 0.88 1.0</ambient>
+          <diffuse>0.90 0.88 0.84 1.0</diffuse>
+          <specular>0.4 0.4 0.4 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- ══ VISUAL: LOGO STRIPE (blue band around mug) ══ -->
+      <visual name="stripe_visual">
+        <pose>0 0 0.010 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0382</radius>
+            <length>0.015</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.10 0.35 0.65 1.0</ambient>
+          <diffuse>0.12 0.38 0.70 1.0</diffuse>
+          <specular>0.2 0.2 0.2 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- ══ COLLISION: Main body ══ -->
+      <collision name="body_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.038</radius>
+            <length>0.095</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.8</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>1e6</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <!-- ══ COLLISION: Handle ══ -->
+      <collision name="handle_collision">
+        <pose>0.052 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.016 0.010 0.055</size>
+          </box>
+        </geometry>
+      </collision>
+
+    </link>
+
+  </model>
+</sdf>

@@ -1,0 +1,30 @@
+//output of the java code  Match THe correct number using Binary Search Algorithm.
+
+WELCOME TO THE TEAM! Phase 1: The Number Game
+
+I have generated a number between 1 and 100. Can you guess it?
+Enter your guess: 50
+Too Low! Try again.
+Enter your guess: 85
+Too Low! Try again.
+Enter your guess: 87
+Too High! Try again.
+Enter your guess: 86'
+Invalid input. Please enter a whole number.
+Enter your guess: 86
+Correct! You found it in 4 attempts.
+Do you want to play another round? (Y/N): y
+
+I have generated a number between 1 and 100. Can you guess it?
+Enter your guess: 50
+Too High! Try again.
+Enter your guess: 25
+Too Low! Try again.
+Enter your guess: 37
+Too High! Try again.
+Enter your guess: 31
+Too High! Try again.
+Enter your guess: 28
+Correct! You found it in 5 attempts.
+Do you want to play another round? (Y/N): N
+Thank you for playing! Mission Complete.

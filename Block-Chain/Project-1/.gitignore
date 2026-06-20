@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+attack_report.txt
+ledger.dat

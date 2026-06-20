@@ -1,0 +1,6 @@
+(Invoke-WebRequest http://localhost:3000/users).Content | ConvertFrom-Json
+
+Invoke-WebRequest http://localhost:3000/users -Method POST -Body '{"name": "Alex", "email": "alex@decodelabs.com"}' -ContentType "application/json"
+Invoke-WebRequest http://localhost:3000/users -Method GET -ContentType "application/json"
+Invoke-WebRequest http://localhost:3000/users -Method GET -ContentType "application/json"
+Invoke-WebRequest http://localhost:3000/users -Method GET -ContentType "application/json"

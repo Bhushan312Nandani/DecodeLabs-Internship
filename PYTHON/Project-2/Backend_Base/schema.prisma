@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+model Transaction {
+  id             String   @id @default(uuid())
+  amountInCents  Int      // Banking Constraint: Stored as integer
+  description    String
+  category       String   @default("GENERAL")
+  status         String   @default("POSTED") 
+  createdAt      DateTime @default(now())    
+  idempotencyKey String?  @unique           
+}

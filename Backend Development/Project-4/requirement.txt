@@ -1,0 +1,11 @@
+for frontend
+cd frontend/frontend
+npm install framer-motion lucide-react
+npm install tailwindcss @tailwindcss/vite
+npm install autoprefixer
+npx tailwindcss init -p
+
+for backend in root directory
+npm install cors
+npm install express axios dotenv
+npm install --save-dev nodemon

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecodeLabs Weather Hub</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* Weather Data Display Elements */
+        #weather-display {
+            display: none; /* Hidden until data arrives */
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .temperature {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+
+        .condition {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .meta-data {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        #error-message {
+            color: var(--error);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Global Weather Hub</h1>
+        
+        <form id="weather-form" class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name..." required autocomplete="off">
+            <button type="submit" id="search-btn">Search</button>
+        </form>
+
+        <div id="error-message"></div>
+
+        <div id="weather-display">
+            <h2 id="location-name" style="margin: 0;">--</h2>
+            <div id="country-name" style="color: #64748b;">--</div>
+            
+            <div class="temperature"><span id="temp-value">--</span>°C</div>
+            <div class="condition" id="condition-value">--</div>
+            
+            <div class="meta-data">
+                <span>Humidity: <strong id="humidity-value">--</strong>%</span>
+                <span style="font-size: 0.75rem;">Processed via Middleman</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const form = document.getElementById('weather-form');
+        const cityInput = document.getElementById('city-input');
+        const searchBtn = document.getElementById('search-btn');
+        const weatherDisplay = document.getElementById('weather-display');
+        const errorMessage = document.getElementById('error-message');
+
+        // Form Submit Handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const city = cityInput.value.trim();
+            if (!city) return;
+
+            // UI Reset: Loading State
+            searchBtn.disabled = true;
+            searchBtn.textContent = "Fetching...";
+            errorMessage.style.display = 'none';
+            weatherDisplay.style.display = 'none';
+
+            try {
+                // Call your Local Backend Middleman (NOT the Third-Party API directly!)
+                const response = await fetch(`http://localhost:5000/api/weather?city=${encodeURIComponent(city)}`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to fetch weather data');
+                }
+
+                // Update the DOM with your perfectly formatted payload
+                document.getElementById('location-name').textContent = data.location;
+                document.getElementById('country-name').textContent = data.country;
+                document.getElementById('temp-value').textContent = data.temperature_c;
+                document.getElementById('condition-value').textContent = data.condition;
+                document.getElementById('humidity-value').textContent = data.humidity;
+
+                // Reveal the weather card
+                weatherDisplay.style.display = 'block';
+
+            } catch (error) {
+                // The frontend gracefully displays the error caught by your backend's Shield
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+            } finally {
+                // UI Reset: Restore Button
+                searchBtn.disabled = false;
+                searchBtn.textContent = "Search";
+            }
+        });
+    </script>
+
+</body>
+</html>

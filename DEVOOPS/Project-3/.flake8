@@ -1,0 +1,17 @@
+# =============================================================
+#  PROJECT-3: .flake8
+#  Linter configuration — the first gatekeeper in the pipeline.
+#  These rules are enforced in CI; violations fail the build.
+# =============================================================
+[flake8]
+max-line-length = 120
+exclude =
+    venv,
+    __pycache__,
+    .git,
+    *.egg-info
+
+# Ignored rules (documented so the team understands why):
+# E501 - line length handled by max-line-length above
+# W503 - line break before binary operator (conflicts with Black formatter)
+ignore = W503

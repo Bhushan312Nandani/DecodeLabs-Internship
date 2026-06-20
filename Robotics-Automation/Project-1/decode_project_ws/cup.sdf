@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="coffee_cup">
+    <link name="link">
+      <visual name="visual">
+        <geometry><cylinder><radius>0.04</radius><length>0.1</length></cylinder></geometry>
+        <material><ambient>0.8 0.1 0.1 1</ambient></material> </visual>
+      <collision name="collision">
+        <geometry><cylinder><radius>0.04</radius><length>0.1</length></cylinder></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

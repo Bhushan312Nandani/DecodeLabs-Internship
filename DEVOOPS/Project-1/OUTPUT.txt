@@ -1,0 +1,212 @@
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1/NEW$ cd ..
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ pwd
+/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ touch /New/Greeting.txt
+touch: cannot touch '/New/Greeting.txt': No such file or directory
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ touch New/Greeting.txt
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ pwd & ls -R New/
+[2] 2388
+/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1
+New/:
+Greeting.txt
+[2]-  Done                    pwd
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ echo "Hello! I'm Intern Learning DEVOOPS" > New/Greeting.txt
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ head New/Greeting.txt
+Hello! I'm Intern Learning DEVOOPS
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ mv New/Greeting.txt /
+mv: cannot create regular file '/Greeting.txt': Permission denied
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ mv New/Greeting.txt ..
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ cd NEw
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1/NEw$ ls
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1/NEw$ cd ~ ..
+-bash: cd: too many arguments
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1/NEw$ cd ~/
+bhushann@JaideepN:~$ ls
+decode_project_ws
+bhushann@JaideepN:~$ cd ..
+bhushann@JaideepN:/home$ ls
+bhushann
+bhushann@JaideepN:/home$ cd ..
+bhushann@JaideepN:/$ ls
+bin  boot  dev  etc  home  init  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  Project-1  root  run  sbin  snap  srv  sys  tmp  usr  var
+bhushann@JaideepN:/$ cd ..
+bhushann@JaideepN:/$ ls
+bin  boot  dev  etc  home  init  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  Project-1  root  run  sbin  snap  srv  sys  tmp  usr  var
+bhushann@JaideepN:/$ ls
+bin  boot  dev  etc  home  init  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  Project-1  root  run  sbin  snap  srv  sys  tmp  usr  var
+bhushann@JaideepN:/$ LS -L
+LS: command not found
+bhushann@JaideepN:/$ ls -l
+total 2756
+lrwxrwxrwx   1 root root       7 Mar  9 19:16 bin -> usr/bin
+drwxr-xr-x   2 root root    4096 Apr 18  2022 boot
+drwxr-xr-x  15 root root    3900 Jun  1 06:10 dev
+drwxr-xr-x 107 root root    4096 Jun  1 06:10 etc
+drwxr-xr-x   3 root root    4096 May 24 19:02 home
+-rwxrwxrwx   1 root root 2735264 Aug  7  2025 init
+lrwxrwxrwx   1 root root       7 Mar  9 19:16 lib -> usr/lib
+lrwxrwxrwx   1 root root       9 Mar  9 19:16 lib32 -> usr/lib32
+lrwxrwxrwx   1 root root       9 Mar  9 19:16 lib64 -> usr/lib64
+lrwxrwxrwx   1 root root      10 Mar  9 19:16 libx32 -> usr/libx32
+drwx------   2 root root   16384 May 24 19:02 lost+found
+drwxr-xr-x   2 root root    4096 Mar  9 19:16 media
+drwxr-xr-x   6 root root    4096 May 24 19:02 mnt
+drwxr-xr-x   3 root root    4096 May 24 19:38 opt
+dr-xr-xr-x 275 root root       0 Jun  1 06:10 proc
+-rwxr-xr-x   1 root root       0 Jun  1 06:25 Project-1
+drwx------   2 root root    4096 Mar  9 19:18 root
+drwxr-xr-x  20 root root     580 Jun  1 06:10 run
+lrwxrwxrwx   1 root root       8 Mar  9 19:16 sbin -> usr/sbin
+drwxr-xr-x   2 root root    4096 May 24 19:02 snap
+drwxr-xr-x   2 root root    4096 Mar  9 19:16 srv
+dr-xr-xr-x  13 root root       0 Jun  1 06:07 sys
+drwxrwxrwt   8 root root   20480 Jun  1 07:12 tmp
+drwxr-xr-x  14 root root    4096 Mar  9 19:16 usr
+drwxr-xr-x  13 root root    4096 Mar  9 19:18 var
+bhushann@JaideepN:/$ cd /mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1
+-bash: cd: too many arguments
+bhushann@JaideepN:/$ cd /mnt/c/users/AFZAL\ /COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1
+-bash: cd: /mnt/c/users/AFZAL /COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1: No such file or directory
+bhushann@JaideepN:/$ cd "/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1"
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ cd ..
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS$ ls
+Greeting.txt  Project-1  Resources
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS$ mv Greeting.txt Project-1/
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS$ ls
+Project-1  Resources
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS$ cd Project-1/
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+Greeting.txt  New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls -l
+total 0
+-rwxrwxrwx 1 bhushann bhushann   35 Jun  1 07:14 Greeting.txt
+drwxrwxrwx 1 bhushann bhushann 4096 Jun  1 07:15 New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ chmod 444 Greeting.txt
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls-l
+ls-l: command not found
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls -l
+total 0
+-r-xr-xr-x 1 bhushann bhushann   35 Jun  1 07:14 Greeting.txt
+drwxrwxrwx 1 bhushann bhushann 4096 Jun  1 07:15 New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ chown root:root Greeting.txt
+chown: changing ownership of 'Greeting.txt': Operation not permitted
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ sudo chown root:root Greeting.txt
+[sudo] password for bhushann:
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls -l
+total 0
+-r-xr-xr-x 1 bhushann bhushann   35 Jun  1 07:14 Greeting.txt
+drwxrwxrwx 1 bhushann bhushann 4096 Jun  1 07:15 New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ sudo chown root:root Greeting.txt
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls -l
+total 0
+-r-xr-xr-x 1 bhushann bhushann   35 Jun  1 07:14 Greeting.txt
+drwxrwxrwx 1 bhushann bhushann 4096 Jun  1 07:15 New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ whoami
+bhushann
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ whoami & id
+[2] 2737
+bhushann
+uid=1000(bhushann) gid=1000(bhushann) groups=1000(bhushann),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev)
+[2]-  Done                    whoami
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls'
+> ^C
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ ls
+Greeting.txt  New
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ pwd
+/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ cp -r "/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1/Greeting.txt" ~/
+bhushann@JaideepN:/mnt/c/users/AFZAL COMPUTERS/Desktop/DECODE-LAB/DEVOOPS/Project-1$ cd ~/
+bhushann@JaideepN:~$ ls
+decode_project_ws  Greeting.txt
+bhushann@JaideepN:~$ chown root:root Greeting.txt
+chown: changing ownership of 'Greeting.txt': Operation not permitted
+bhushann@JaideepN:~$ sudo chown root:root Greeting.txt
+bhushann@JaideepN:~$ ls -l
+total 8
+drwxr-xr-x 6 bhushann bhushann 4096 May 25 16:16 decode_project_ws
+-r-xr-xr-x 1 root     root       35 Jun  1 07:29 Greeting.txt
+bhushann@JaideepN:~$ chown bhushann:root Greeting.txt
+chown: changing ownership of 'Greeting.txt': Operation not permitted
+bhushann@JaideepN:~$ sudo chown bhushann:root Greeting.txt
+bhushann@JaideepN:~$ ls -l
+total 8
+drwxr-xr-x 6 bhushann bhushann 4096 May 25 16:16 decode_project_ws
+-r-xr-xr-x 1 bhushann root       35 Jun  1 07:29 Greeting.txt
+bhushann@JaideepN:~$ sudo chown bhushann:bhushann Greeting.txt
+bhushann@JaideepN:~$ cat Greeting.txt
+Hello! I'm Intern Learning DEVOOPS
+bhushann@JaideepN:~$ tail -f Greeting.txt | awk '{print "ALERT: " $0}'
+ALERT: Hello! I'm Intern Learning DEVOOPS
+Hello
+^C
+bhushann@JaideepN:~$ tail -f Greeting.txt | grep "%codeLab%" | tee Lab.txt
+Hello
+^C
+bhushann@JaideepN:~$ ls
+decode_project_ws  Greeting.txt  Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+bhushann@JaideepN:~$ cat Lab.txt
+bhushann@JaideepN:~$ tail -f Greeting.txt | grep "%codeLab%" >Lab.txt
+^C
+bhushann@JaideepN:~$ tail Greeting.txt | grep "%codeLab%" >Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+bhushann@JaideepN:~$ tail Greeting.txt | grep "OOP%" > Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+bhushann@JaideepN:~$ tail Greeting.txt | grep "%OOP%" > Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+bhushann@JaideepN:~$ tail Greeting.txt | grep "DEVOOPS" > Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+Hello! I'm Intern Learning DEVOOPS
+bhushann@JaideepN:~$ nano Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+
+bhushann@JaideepN:~$ tail Greeting.txt | grep -o "DEVOOPS" > Lab.txt
+bhushann@JaideepN:~$ head Lab.txt
+DEVOOPS
+bhushann@JaideepN:~$ ls
+decode_project_ws  Greeting.txt  Lab.txt
+bhushann@JaideepN:~$ mkdir New
+bhushann@JaideepN:~$ ls
+decode_project_ws  Greeting.txt  Lab.txt  New
+bhushann@JaideepN:~$ mv Greeting.txt Lab.txt New/
+bhushann@JaideepN:~$ rm -r New/
+rm: remove write-protected regular file 'New/Greeting.txt'?
+rm: cannot remove 'New/': Directory not empty
+bhushann@JaideepN:~$ sudo rm -r New/
+[sudo] password for bhushann:
+bhushann@JaideepN:~$ ls
+decode_project_ws
+bhushann@JaideepN:~$
+
+
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ ssh -V
+OpenSSH_8.9p1 Ubuntu-3ubuntu0.15, OpenSSL 3.0.2 15 Mar 2022
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ ssh -T git@github.com
+The authenticity of host 'github.com (20.207.73.82)' can't be established.
+"placeholder" key fingerprint is SHA256:"placeholder".
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com'  to the list of known hosts.
+git@github.com: Permission denied (publickey).
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ ping 20.207.73.8
+PING 20.207.73.8 (20.207.73.8) 56(84) bytes of data.
+From 20.207.73.8 icmp_seq=1 Destination Host Unreachable
+^C
+--- 20.207.73.8 ping statistics ---
+8 packets transmitted, 0 received, +7 errors, 100% packet loss, time 7072ms
+
+bhushann@JaideepN:/mnt/c/Users/AFZAL COMPUTERS$ exit

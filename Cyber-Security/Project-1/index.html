@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Attacker Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>DECODELABS // LIVE ATTACK SIMULATOR</h1>
+        <p>Type below. Watch the attacker script react in real-time.</p>
+    </div>
+
+    <div class="split-screen">
+        <div class="panel defense-panel">
+            <h2>1. USER TERMINAL</h2>
+            <p>Enter your password:</p>
+            <input type="text" id="livePassword" placeholder="Start typing..." autocomplete="off">
+            
+            <div class="gatekeeper-status" id="gatekeeper">
+                STATUS: WAITING FOR KEYSTROKES
+            </div>
+
+            <div class="ram-view">
+                <h3>LIVE RAM ALLOCATION (HINNOP TRAP)</h3>
+                <div id="ramBlocks" class="ram-grid"></div>
+            </div>
+        </div>
+
+        <div class="panel attack-panel">
+            <h2>2. ATTACKER CONSOLE (Simulated)</h2>
+            <div class="metrics">
+                <div class="metric-box">
+                    <span>Search Space (Entropy)</span>
+                    <strong id="entropyValue">0</strong>
+                </div>
+                <div class="metric-box">
+                    <span>Estimated Crack Time</span>
+                    <strong id="crackTime" class="critical">Instant</strong>
+                </div>
+            </div>
+            
+            <ul id="attackerLogs" class="terminal-logs">
+                <li>> Attacker script listening for input events...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+version: "3.9"
+
+# =============================================================
+#  PROJECT-3: docker-compose.yml
+#  Local development environment — mirrors what the pipeline
+#  builds and the server runs in production.
+#
+#  Usage:
+#    docker-compose up --build   → build image and start
+#    docker-compose down         → stop and remove containers
+#    docker-compose logs -f      → stream live logs
+#
+#  WHY THIS MATTERS FOR CI/CD:
+#    The exact same Docker image built by the pipeline can be
+#    run locally with this file — "it works on my machine"
+#    becomes "it works the same EVERYWHERE".
+# =============================================================
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: automated-factory-local
+    ports:
+      - "5000:5000"       # HOST:CONTAINER — access at http://localhost:5000
+    environment:
+      - PORT=5000
+      - FLASK_DEBUG=false
+      # In real projects, load from .env file (which is in .gitignore!):
+      # env_file:
+      #   - .env
+    volumes:
+      - ./app.py:/app/app.py   # Hot-reload in development
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s

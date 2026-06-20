@@ -1,0 +1,80 @@
+# ============================================================
+# DECODE-LAB Global .gitignore
+# Folders excluded from ALL GitHub uploads
+# ============================================================
+
+# --- Entire subject folders (not for upload) ---
+AutoCad/
+Data-Analytics/
+Data-Science/
+Digital-Marketing/
+Gen-Ai/
+IOT/
+Prompt Engineering/
+Resouces/
+Stock-Market-Analysis/
+UIUX/
+
+# --- Resource/PDF folders inside each subject ---
+AI/Resources/
+Backend Development/Resources/
+Block-Chain/Resources/
+Cloud-Computing/Resources/
+Cyber-Security/Resources/
+DEVOOPS/Resources/
+Frontend-Development/Resources/
+Full-Stack-development/Resources/
+JAVA/Resources/
+PYTHON/Resources/
+Robotics-Automation/Resources/
+
+# --- Videos (large files - upload separately via terminal/LFS) ---
+
+# --- Python artifacts ---
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+.venv/
+**/.venv/
+*.egg-info/
+
+# --- Node.js ---
+**/node_modules/
+**/package-lock.json
+
+# --- Java artifacts ---
+**/*.class
+**/target/
+**/out/
+
+# --- IDE & Editor ---
+.vscode/
+.idea/
+*.suo
+*.user
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Build & Cache ---
+**/.pytest_cache/
+**/build/
+**/cdk.out/
+**/.git/
+
+# --- Logs & temp ---
+**/*.log
+**/*.crdownload
+**/*.bin
+*.tmp
+
+# --- PDF files (large resources) ---
+**/*.pdf
+
+# --- DEVOOPS - wrong Project-2 location ---
+DEVOOPS/Project-2/
+
+# Skip unsafe project 3
+Cloud-Computing/Project-3/

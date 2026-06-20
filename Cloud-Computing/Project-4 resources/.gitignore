@@ -1,0 +1,7 @@
+node_modules/
+cdk.out/
+.cdk.staging/
+dist/
+bootstrap
+*.exe
+.env

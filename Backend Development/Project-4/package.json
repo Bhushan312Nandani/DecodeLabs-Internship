@@ -1,0 +1,21 @@
+{
+  "name": "project-4",
+  "version": "1.0.0",
+  "description": "Project 4: Production-Grade Third-Party API Integration",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "axios": "^1.7.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.0",
+    "express": "^4.19.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

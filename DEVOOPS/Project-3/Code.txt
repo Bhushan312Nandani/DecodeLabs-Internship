@@ -1,0 +1,153 @@
+# =============================================================
+#  PROJECT-3: Code.txt
+#  Step-by-Step Command Reference
+#  Everything you need to run to build this project from zero.
+# =============================================================
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 1 — Initialize the Repository
+# ══════════════════════════════════════════════════════════════
+
+# Create project directory and enter it
+mkdir devops-automated-factory
+cd devops-automated-factory
+
+# Initialize git — makes this a local git repository
+git init
+
+# Create the foundational README
+echo "# Project-3: Automated Software Factory" > README.md
+git add README.md
+git commit -m "init: Create project repository"
+
+# Set the default branch name to 'main'
+git branch -M main
+
+# Authenticate GitHub CLI (run once)
+gh auth login
+
+# Create the GitHub repo and push
+gh repo create devops-automated-factory --public --source=. --remote=origin --push
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 2 — Protect Secrets (.gitignore)
+# ══════════════════════════════════════════════════════════════
+
+# .gitignore is already created in the project
+# CRITICAL: .env files with passwords/API keys must NEVER be committed
+# The .gitignore blocks them at the git level
+
+git add .gitignore
+git commit -m "security: Add .gitignore to protect secrets"
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 3 — Application Code
+# ══════════════════════════════════════════════════════════════
+
+git add app.py requirements.txt
+git commit -m "feat: Add Flask application with API endpoints"
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 4 — The Test Suite (The Gatekeeper)
+# ══════════════════════════════════════════════════════════════
+
+# Run tests locally before committing
+pip install -r requirements.txt
+pytest tests/ -v
+
+git add tests/ pytest.ini .flake8
+git commit -m "test: Add comprehensive test suite — 20+ tests across 3 groups"
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 5 — Docker (The Artifact Factory)
+# ══════════════════════════════════════════════════════════════
+
+# Build the Docker image locally
+docker build -t devops-automated-factory:local .
+
+# Test the container runs correctly
+docker run -d --name factory-test -p 5000:5000 devops-automated-factory:local
+# Visit http://localhost:5000 to verify
+
+# Clean up test container
+docker stop factory-test && docker rm factory-test
+
+git add Dockerfile docker-compose.yml
+git commit -m "build: Add multi-stage Dockerfile and Docker Compose config"
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 6 — GitHub Secrets Setup (The Secret Vault)
+# ══════════════════════════════════════════════════════════════
+
+# BEFORE pushing the pipeline, set up these GitHub Secrets:
+# Navigate to: GitHub Repo → Settings → Secrets & Variables → Actions
+
+# Required Secrets:
+#   DOCKERHUB_USERNAME    → Your Docker Hub username
+#   DOCKERHUB_TOKEN       → Docker Hub Access Token (not your password!)
+#                           Get it at: hub.docker.com → Account Settings → Security → New Access Token
+#
+#   PROD_SERVER_IP        → IP address of your production server
+#   PROD_SERVER_USER      → SSH username (e.g., 'ubuntu', 'root')
+#   PROD_SSH_PRIVATE_KEY  → Contents of your private SSH key (~/.ssh/id_rsa)
+
+# To generate an SSH key pair for deployment:
+ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/deploy_key
+
+# Copy the PUBLIC key to your server's authorized_keys:
+ssh-copy-id -i ~/.ssh/deploy_key.pub user@your-server-ip
+
+# Copy the PRIVATE key content into the GitHub Secret PROD_SSH_PRIVATE_KEY:
+cat ~/.ssh/deploy_key    # Copy this entire output into the secret
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 7 — The GitHub Actions Pipeline
+# ══════════════════════════════════════════════════════════════
+
+git add .github/
+git commit -m "ci: Add full CI/CD pipeline — lint, test, build, deploy"
+
+
+# ══════════════════════════════════════════════════════════════
+#  PHASE 8 — Trigger the Factory (Push to GitHub)
+# ══════════════════════════════════════════════════════════════
+
+git push origin main
+
+# After pushing:
+# 1. Go to GitHub → your repo → Actions tab
+# 2. Watch the workflow run in real-time
+# 3. See each job: Lint → Test → Build → Deploy → Summary
+# 4. If all pass → The Green Checkmark is achieved ✅
+# 5. Your app is live on the production server — ZERO manual steps!
+
+
+# ══════════════════════════════════════════════════════════════
+#  LOCAL DEVELOPMENT COMMANDS
+# ══════════════════════════════════════════════════════════════
+
+# Run app locally (without Docker)
+pip install -r requirements.txt
+python app.py
+
+# Run tests locally with coverage
+pytest tests/ -v --cov=app --cov-report=term-missing
+
+# Run linter
+flake8 app.py
+
+# Run with Docker Compose (recommended — mirrors production)
+docker-compose up --build
+
+# View running containers
+docker ps
+
+# View container logs
+docker logs automated-factory -f

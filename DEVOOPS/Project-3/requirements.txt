@@ -1,0 +1,16 @@
+# =============================================================
+#  PROJECT-3: requirements.txt
+#  The dependency manifest — pinned versions ensure the build
+#  environment is IDENTICAL every time the pipeline runs.
+#  "It works on my machine" dies here.
+# =============================================================
+
+# ── Web Framework ─────────────────────────────────────────────
+flask==3.0.3           # The application server
+
+# ── Testing — The Gatekeeper's Tools ─────────────────────────
+pytest==8.2.2          # Test runner — executed by CI pipeline
+pytest-cov==5.0.0      # Coverage reporter — fails if coverage drops below threshold
+
+# ── Code Quality (Linting) ────────────────────────────────────
+flake8==7.1.0          # Style + syntax linter — catches bugs before tests run

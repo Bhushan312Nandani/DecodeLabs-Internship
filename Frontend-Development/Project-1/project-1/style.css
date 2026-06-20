@@ -1,0 +1,78 @@
+/* =========================================
+   BASE RESETS & TYPOGRAPHY
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Crucial for strict layout constraints */
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* =========================================
+   HEADER: Height 80px, Full Width
+   ========================================= */
+.site-header {
+    height: 80px;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px; /* Internal padding so content doesn't touch edges */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* =========================================
+   HERO SECTION: Min-Height 100vh
+   ========================================= */
+.hero-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f4f6f8;
+    padding: 24px;
+}
+
+/* BEM Button Styling (Matching Slide 13 Concepts) */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 24px;
+}
+
+.btn--primary {
+    background-color: #0056b3;
+    color: #ffffff;
+    border: 2px solid #0056b3;
+}
+
+/* =========================================
+   CONTENT GRID: 12 Cols, 24px Gutter, 1200px Max
+   ========================================= */
+.content-grid {
+    max-width: 1200px;
+    margin: 80px auto; /* Centers the grid horizontally */
+    padding: 0 24px;

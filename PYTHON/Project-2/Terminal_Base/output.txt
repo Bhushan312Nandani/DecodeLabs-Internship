@@ -1,0 +1,14 @@
+C:\Users\AFZAL COMPUTERS\Desktop\DECODE-LAB\PYTHON\Project-2\Terminal_Base>py main.py
+=== DECODELABS EXPENSE TRACKER ===
+Enter your expenses one by one.
+Type 'quit' to stop the engine and see your total.
+
+Enter expense amount: 20
+Enter expense amount: 30
+Enter expense amount: 43
+Enter expense amount: 27
+Enter expense amount: quit
+-----------------------------------
+FINAL TOTAL SPENT: $120.00
+
+C:\Users\AFZAL COMPUTERS\Desktop\DECODE-LAB\PYTHON\Project-2\Terminal_Base>

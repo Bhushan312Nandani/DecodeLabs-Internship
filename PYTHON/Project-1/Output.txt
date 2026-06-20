@@ -1,0 +1,37 @@
+//output of the Python code.
+
+1. Add Task to MongoDB
+2. View Tasks from MongoDB
+3. Exit
+Select an option: 1
+Enter task: Finish Python assignment   
+Task saved to permanent storage.
+1. Add Task to MongoDB
+2. View Tasks from MongoDB
+3. Exit
+Select an option: 2
+
+--- CURRENT TASKS (DB PERSISTED) ---
+1. Finish Python assignment (DB_ID: 6a1085cf5e29fd406e29b4cf)
+------------------------------------
+
+1. Add Task to MongoDB
+2. View Tasks from MongoDB
+3. Exit
+Select an option: 1
+Enter task: Booklets
+Task saved to permanent storage.
+1. Add Task to MongoDB
+2. View Tasks from MongoDB
+3. Exit
+Select an option: 2
+
+--- CURRENT TASKS (DB PERSISTED) ---
+1. Finish Python assignment (DB_ID: 6a1085cf5e29fd406e29b4cf)
+2. Booklets (DB_ID: 6a1085ec5e29fd406e29b4d0)
+------------------------------------
+
+1. Add Task to MongoDB
+2. View Tasks from MongoDB
+3. Exit
+Select an option: 3

@@ -1,0 +1,66 @@
+/* Color Palette */
+:root {
+    --mocha-mousse: #A59S6E;
+    /* Note: Hex provided in source contains non-hex char S */
+    --ethereal-blue: #AOD4E0;
+    --moonlit-grey: #F2FOEA;
+    --headline-font: 'Inter', sans-serif;
+    --body-font: 'Open Sans', sans-serif;
+}
+
+/* Mobile-First: Single Column */
+body {
+    background-color: var(--moonlit-grey);
+    color: #333;
+    font-family: var(--body-font);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fluid Typography */
+h1 {
+    font-family: var(--headline-font);
+    font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+/* Micro-Components using Flexbox */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--mocha-mousse);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+/* Macro-Layout using Grid */
+.main-content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column for mobile */
+    gap: 20px;
+    padding: 26px;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+
+    /* Tablet */
+    .main-content-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    /* Desktop */
+    .main-content-grid {
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+}

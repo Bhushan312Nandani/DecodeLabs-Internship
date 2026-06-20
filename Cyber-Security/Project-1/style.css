@@ -1,0 +1,77 @@
+:root {
+    --bg-dark: #050505;
+    --green: #00ff41;
+    --red: #ff003c;
+    --panel-bg: #111;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--green);
+    font-family: 'Courier New', monospace;
+    margin: 0; padding: 20px;
+}
+
+.header { text-align: center; border-bottom: 1px dashed var(--green); padding-bottom: 10px; margin-bottom: 20px; }
+
+.split-screen {
+    display: flex;
+    gap: 20px;
+}
+
+.panel {
+    flex: 1;
+    background: var(--panel-bg);
+    border: 1px solid #333;
+    padding: 20px;
+}
+
+.attack-panel {
+    border-color: var(--red);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.1);
+}
+
+.attack-panel h2 { color: var(--red); }
+
+input[type="text"] {
+    width: 90%;
+    background: #000;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: inherit;
+    margin-bottom: 20px;
+}
+
+.gatekeeper-status {
+    padding: 15px;
+    border: 2px solid var(--green);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.critical { color: var(--red); border-color: var(--red) !important; }
+.safe { color: var(--green); }
+
+.metrics { display: flex; gap: 10px; margin-bottom: 15px; }
+.metric-box {
+    flex: 1;
+    background: #000;
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+.metric-box strong { display: block; font-size: 1.2em; margin-top: 5px; }
+
+.terminal-logs {
+    list-style: none; padding: 0; margin: 0;
+    height: 250px; overflow-y: auto;
+    font-size: 0.9em; color: #ccc;
+}
+.terminal-logs li { margin-bottom: 5px; }
+.log-red { color: var(--red); }
+
+.ram-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+.ram-block { background: var(--green); color: black; padding: 5px 10px; font-weight: bold; }

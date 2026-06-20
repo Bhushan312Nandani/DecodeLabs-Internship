@@ -1,0 +1,284 @@
+/* --- Visual Design & 2025 Aesthetics --- */
+:root {
+    /* Color Palette */
+    --mocha-mousse: #A8956F;  /* Stability */
+    --ethereal-blue: #A0D4E0; /* Trust */
+    --moonlit-grey: #F2F0EA;  /* Refinement */
+    --dark-charcoal: #2B2A27;
+    --white-pure: #FFFFFF;
+    
+    /* Typography Fluid Scale (clamp) */
+    --font-heading-lg: clamp(1.75rem, 4vw + 1rem, 2.5rem);
+    --font-heading-md: clamp(1.25rem, 2vw + 1rem, 1.75rem);
+    --font-body: clamp(0.95rem, 0.5vw + 0.8rem, 1.05rem);
+}
+
+/* --- Base Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--font-body);
+    background-color: var(--moonlit-grey);
+    color: var(--dark-charcoal);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--dark-charcoal);
+}
+
+/* --- Micro Components via Flexbox --- */
+.app-header {
+    background-color: var(--white-pure);
+    border-bottom: 1px solid rgba(168, 149, 111, 0.15);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.logo-icon {
+    color: var(--mocha-mousse);
+    font-size: 1.5rem;
+}
+
+.nav-container {
+    display: none; /* Hidden on mobile by default */
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white-pure);
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.nav-container.active {
+    display: flex;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--mocha-mousse);
+}
+
+.btn-primary {
+    background-color: var(--mocha-mousse);
+    color: var(--white-pure);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #8E7D5B;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-charcoal);
+    transition: 0.3s;
+}
+
+/* --- Mobile First Macro Layout --- */
+.layout-wrapper {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for mobile */
+    flex: 1;
+}
+
+.sidebar {
+    background-color: var(--white-pure);
+    border-bottom: 1px solid rgba(168, 149, 111, 0.15);
+    padding: 2rem 1.5rem;
+}
+
+.sidebar-meta {
+    font-size: 0.85rem;
+    color: var(--mocha-mousse);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-list a {
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-size: 0.95rem;
+}
+
+.sidebar-list li.active a {
+    color: var(--mocha-mousse);
+    font-weight: 600;
+}
+
+.sidebar-card {
+    background-color: var(--ethereal-blue);
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: none; /* Kept clean on smaller viewports */
+}
+
+.main-content {
+    padding: 2rem 1.5rem;
+}
+
+.content-hero {
+    margin-bottom: 3rem;
+}
+
+.content-hero h1 {
+    font-size: var(--font-heading-lg);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--white-pure);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--mocha-mousse);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    font-size: var(--font-heading-md);
+    margin-bottom: 0.75rem;
+}
+
+/* --- Terminal Metadata Layout --- */
+.app-footer {
+    background-color: var(--dark-charcoal);
+    color: var(--moonlit-grey);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* --- Media Queries: Adaptive Expansion Rules --- */
+
+/* Tablet Optimization (768px) */
+@media (min-width: 768px) {
+    .sidebar-list {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .sidebar-card {
+        display: block;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Optimization (1024px Floor Plan Match) */
+@media (min-width: 1024px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        padding: 0;
+        box-shadow: none;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .layout-wrapper {
+        grid-template-columns: 280px 1fr; /* Exact strict 2D layout */
+    }
+
+    .sidebar {
+        border-right: 1px solid rgba(168, 149, 111, 0.15);
+        border-bottom: none;
+    }
+
+    .sidebar-sticky {
+        position: sticky;
+        top: 6rem;
+    }
+
+    .main-content {
+        padding: 4rem 3rem;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .app-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2rem 3rem;
+        text-align: left;
+    }
+}

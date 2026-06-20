@@ -1,0 +1,10 @@
+DecodeLabs | Cryptographic Password Generator
+Compliance: NIST SP 800-63B (2024 Revision)
+============================================================
+Strategy     : Full Charset
+Length       : 19 characters
+Pool Size    : 94 unique characters
+Entropy      : 124.54 bits
+Strength     : [ELITE]       Financial / Government Grade
+------------------------------------------------------------
+PASSWORD: PQB3>]1.%Lr/k|4h#h8

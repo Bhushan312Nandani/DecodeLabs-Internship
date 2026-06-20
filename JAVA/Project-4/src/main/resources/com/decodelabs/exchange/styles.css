@@ -1,0 +1,441 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   DecodeLabs Exchange — Dark Premium Theme
+   JavaFX CSS  ·  Project 4  ·  Event-Driven Architecture
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Color Palette ──────────────────────────────────────────────────────── */
+/* Background layers  */
+/* bg-deep:    #0d0f14  – near-black canvas          */
+/* bg-mid:     #12151c  – card backdrop               */
+/* bg-card:    #1a1e2b  – glassmorphism card base     */
+/* bg-surface: #222738  – input surfaces              */
+/* accent:     #6c63ff  – primary violet              */
+/* accent-2:   #48d9a4  – success green               */
+/* gold:       #f5c842  – rate/info highlight         */
+/* danger:     #ff5c6c  – error red                   */
+/* text-hi:    #e8eaf6  – primary text                */
+/* text-mid:   #a0a8c0  – secondary text              */
+/* text-lo:    #5a6080  – muted / placeholder         */
+
+/* ── Root ───────────────────────────────────────────────────────────────── */
+.root-container {
+    -fx-background-color: #0d0f14;
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.header {
+    -fx-background-color: linear-gradient(to right, #12151c, #1a1e2b);
+    -fx-border-color: transparent transparent #222738 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 12, 0, 0, 3);
+}
+
+.header-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf6;
+    -fx-effect: dropshadow(gaussian, #6c63ff66, 8, 0, 0, 0);
+}
+
+.header-subtitle {
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #5a6080;
+}
+
+.status-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #a0a8c0;
+}
+
+.badge-api {
+    -fx-background-color: linear-gradient(to right, #1f2d22, #243428);
+    -fx-background-radius: 4;
+    -fx-text-fill: #48d9a4;
+    -fx-font-size: 10.5px;
+    -fx-padding: 3 9 3 9;
+    -fx-border-color: #2a4535;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+}
+
+.badge-offline {
+    -fx-background-color: #2b1d1d;
+    -fx-background-radius: 4;
+    -fx-text-fill: #ff8a80;
+    -fx-font-size: 10.5px;
+    -fx-padding: 3 9 3 9;
+    -fx-border-color: #5c2c2c;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+}
+
+/* ── Refresh Button ─────────────────────────────────────────────────────── */
+.btn-refresh {
+    -fx-background-color: #1a1e2b;
+    -fx-background-radius: 8;
+    -fx-text-fill: #a0a8c0;
+    -fx-font-size: 12px;
+    -fx-padding: 7 16 7 16;
+    -fx-cursor: hand;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+.btn-refresh:hover {
+    -fx-background-color: #222738;
+    -fx-text-fill: #6c63ff;
+    -fx-border-color: #6c63ff;
+}
+.btn-refresh:pressed {
+    -fx-background-color: #1c1f32;
+}
+
+/* ── Ticker Bar ─────────────────────────────────────────────────────────── */
+.ticker-bar {
+    -fx-background-color: #12151c;
+    -fx-border-color: transparent transparent #1e2235 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.ticker-icon {
+    -fx-font-size: 11px;
+    -fx-text-fill: #5a6080;
+    -fx-font-weight: bold;
+}
+
+.ticker-text {
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #48d9a4;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+}
+
+/* ── Cards (Glassmorphism) ───────────────────────────────────────────────── */
+.card {
+    -fx-background-color: linear-gradient(to bottom, #1e2235, #1a1e2b);
+    -fx-background-radius: 14;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 22 24 22 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 20, 0, 0, 5);
+}
+
+.card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf6;
+    -fx-letter-spacing: 1.5px;
+}
+
+.card-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #5a6080;
+}
+
+/* ── Field Labels ───────────────────────────────────────────────────────── */
+.field-label {
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a6080;
+    -fx-letter-spacing: 1.2px;
+}
+
+/* ── Amount Input ───────────────────────────────────────────────────────── */
+.amount-field {
+    -fx-background-color: #12151c;
+    -fx-background-radius: 8;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #e8eaf6;
+    -fx-prompt-text-fill: #3a3f5c;
+    -fx-font-size: 20px;
+    -fx-padding: 10 14 10 14;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+.amount-field:focused {
+    -fx-border-color: #6c63ff;
+    -fx-effect: dropshadow(gaussian, #6c63ff44, 10, 0, 0, 0);
+}
+
+/* ── Currency ComboBox ──────────────────────────────────────────────────── */
+.currency-combo {
+    -fx-background-color: #12151c;
+    -fx-background-radius: 8;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #e8eaf6;
+    -fx-font-size: 14px;
+    -fx-padding: 6 10 6 10;
+}
+.currency-combo:focused {
+    -fx-border-color: #6c63ff;
+}
+.currency-combo .list-cell {
+    -fx-background-color: #12151c;
+    -fx-text-fill: #e8eaf6;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 13px;
+}
+.currency-combo .list-cell:hover {
+    -fx-background-color: #1e2235;
+}
+.currency-combo .list-cell:selected {
+    -fx-background-color: #2a2c54;
+    -fx-text-fill: #6c63ff;
+}
+.currency-combo .combo-box-popup .list-view {
+    -fx-background-color: #12151c;
+    -fx-border-color: #2e334d;
+    -fx-border-width: 1;
+}
+.currency-combo .arrow {
+    -fx-background-color: #5a6080;
+}
+
+/* ── Swap Button ────────────────────────────────────────────────────────── */
+.swap-arrow {
+    -fx-font-size: 18px;
+    -fx-text-fill: #5a6080;
+}
+
+.btn-swap {
+    -fx-background-color: #1a1e2b;
+    -fx-background-radius: 8;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-text-fill: #a0a8c0;
+    -fx-font-size: 12px;
+    -fx-padding: 7 18 7 18;
+    -fx-cursor: hand;
+}
+.btn-swap:hover {
+    -fx-background-color: #222738;
+    -fx-text-fill: #6c63ff;
+    -fx-border-color: #6c63ff;
+}
+
+/* ── Convert Button ─────────────────────────────────────────────────────── */
+.btn-convert {
+    -fx-background-color: linear-gradient(to right, #5a52e0, #6c63ff);
+    -fx-background-radius: 10;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #6c63ff88, 14, 0, 0, 3);
+    -fx-padding: 10 0 10 0;
+    -fx-border-width: 0;
+}
+.btn-convert:hover {
+    -fx-background-color: linear-gradient(to right, #6c63ff, #7c72ff);
+    -fx-effect: dropshadow(gaussian, #6c63ffaa, 18, 0, 0, 4);
+}
+.btn-convert:pressed {
+    -fx-background-color: linear-gradient(to right, #4e47c9, #5a52e0);
+    -fx-effect: dropshadow(gaussian, #6c63ff55, 8, 0, 0, 2);
+}
+.btn-convert:disabled {
+    -fx-background-color: #2e334d;
+    -fx-text-fill: #5a6080;
+    -fx-effect: none;
+}
+
+/* ── Architecture Note ──────────────────────────────────────────────────── */
+.arch-note {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: #4a5070;
+    -fx-font-style: italic;
+}
+
+/* ── Error Labels ───────────────────────────────────────────────────────── */
+.error-label {
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-padding: 9 13 9 13;
+    -fx-wrap-text: true;
+}
+.error-label.error-format {
+    -fx-background-color: #1f0e12;
+    -fx-text-fill: #ff8a95;
+    -fx-border-color: #5c2230;
+}
+.error-label.error-negative {
+    -fx-background-color: #1f1000;
+    -fx-text-fill: #ffb74d;
+    -fx-border-color: #5c3800;
+}
+.error-label.error-info {
+    -fx-background-color: #0d1625;
+    -fx-text-fill: #64b5f6;
+    -fx-border-color: #1a4080;
+}
+
+/* ── Result Panel ───────────────────────────────────────────────────────── */
+.placeholder-icon {
+    -fx-font-size: 52px;
+    -fx-opacity: 0.2;
+}
+.placeholder-text {
+    -fx-font-size: 15px;
+    -fx-text-fill: #3a3f5c;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+.placeholder-hint {
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #2e3350;
+}
+
+.result-from-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #5a6080;
+    -fx-letter-spacing: 1.2px;
+    -fx-font-weight: bold;
+}
+.result-amount {
+    -fx-font-size: 46px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #48d9a4;
+    -fx-effect: dropshadow(gaussian, #48d9a455, 12, 0, 0, 0);
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+.result-currency {
+    -fx-font-size: 20px;
+    -fx-text-fill: #a0a8c0;
+    -fx-font-weight: bold;
+}
+.rate-info {
+    -fx-font-size: 13px;
+    -fx-text-fill: #f5c842;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+}
+.strategy-label {
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #6c63ff;
+    -fx-font-weight: bold;
+}
+.pivot-steps {
+    -fx-font-size: 11px;
+    -fx-text-fill: #5a6080;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+}
+.timestamp-label {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: #3a3f5c;
+    -fx-font-style: italic;
+}
+
+/* ── Separator ──────────────────────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: #2e334d;
+    -fx-border-width: 1;
+}
+
+/* ── History Panel ──────────────────────────────────────────────────────── */
+.history-panel {
+    -fx-background-color: #12151c;
+    -fx-border-color: #1e2235 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.history-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a6080;
+    -fx-letter-spacing: 1.2px;
+}
+
+.btn-clear {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-border-color: #2e334d;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-text-fill: #5a6080;
+    -fx-font-size: 11px;
+    -fx-padding: 4 12 4 12;
+    -fx-cursor: hand;
+}
+.btn-clear:hover {
+    -fx-background-color: #1e2235;
+    -fx-text-fill: #ff5c6c;
+    -fx-border-color: #5c2230;
+}
+
+/* ── History TableView ──────────────────────────────────────────────────── */
+.history-table {
+    -fx-background-color: #0d0f14;
+    -fx-background-radius: 8;
+    -fx-border-color: #1e2235;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-table-cell-border-color: #1e2235;
+}
+.history-table .column-header-background {
+    -fx-background-color: #12151c;
+    -fx-background-radius: 0;
+}
+.history-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #1e2235 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 7 10 7 10;
+}
+.history-table .column-header .label {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: #5a6080;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.8px;
+}
+.history-table .table-row-cell {
+    -fx-background-color: #0d0f14;
+    -fx-border-color: transparent transparent #161820 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.history-table .table-row-cell:odd {
+    -fx-background-color: #111420;
+}
+.history-table .table-row-cell:hover {
+    -fx-background-color: #1a1e2b;
+}
+.history-table .table-row-cell:selected {
+    -fx-background-color: #232645;
+}
+.history-table .table-cell {
+    -fx-text-fill: #a0a8c0;
+    -fx-font-size: 12px;
+    -fx-padding: 6 10 6 10;
+}
+.history-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #e8eaf6;
+}
+.table-placeholder {
+    -fx-font-size: 12px;
+    -fx-text-fill: #3a3f5c;
+}
+
+/* ── ScrollBar ──────────────────────────────────────────────────────────── */
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #2e334d;
+    -fx-background-radius: 4;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #6c63ff;
+}
+.scroll-bar .track,
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Vault Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
+        .form-group { margin-bottom: 15px; }
+        input { padding: 8px; width: 200px; }
+        button { padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .error { color: red; font-weight: bold; margin-top: 10px;}
+        .user-card { border: 1px solid #ddd; padding: 10px; margin-top: 10px; display: flex; justify-content: space-between;}
+    </style>
+</head>
+<body>
+
+    <h2>Add User to Vault</h2>
+    <div class="form-group">
+        <input type="email" id="email" placeholder="intern@tech.com" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <button onclick="createUser()">CREATE USER</button>
+    </div>
+    <div id="message" class="error"></div>
+
+    <h2>Active Users</h2>
+    <div id="userList"></div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/users';
+
+        // READ
+        async function fetchUsers() {
+            const response = await fetch(API_URL);
+            const users = await response.json();
+            const list = document.getElementById('userList');
+            list.innerHTML = '';
+            
+            users.forEach(user => {
+                list.innerHTML += `
+                    <div class="user-card">
+                        <span><strong>${user.email}</strong> (Age: ${user.age})</span>
+                        <div>
+                            <button onclick="updateUser(${user.id})" style="background: orange;">EDIT AGE</button>
+                            <button onclick="deleteUser(${user.id})" style="background: red;">DELETE</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // CREATE
+        async function createUser() {
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            const msgBox = document.getElementById('message');
+            
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, age })
+            });
+
+            if (response.status === 201) {
+                msgBox.style.color = "green";
+                msgBox.innerText = "User successfully saved to vault!";
+                fetchUsers(); // Refresh list
+            } else if (response.status === 409) {
+                msgBox.style.color = "red";
+                msgBox.innerText = "HTTP 409 Conflict: Email already exists!";
+            } 
+             else if (response.status === 400) {
+                msgBox.style.color = "red";
+                msgBox.innerText = "HTTP 400 Bad Request: Age must be greater than or equal to 0!";
+            }
+            
+            else {
+                const data = await response.json();
+                msgBox.style.color = "red";
+                msgBox.innerText = data.error || "An error occurred.";
+            }
+        }
+
+        // DELETE
+        async function deleteUser(id) {
+            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            fetchUsers(); // Refresh list
+        }
+
+    // UPDATE
+        async function updateUser(id) {
+            // User se nayi age mangne ke liye ek simple prompt open karein
+            const newAge = prompt("Please enter the new age:");
+            
+            // Agar user cancel kar de ya negative age dale, toh rok dein
+            if (newAge === null || newAge === "" || newAge < 0) {
+                alert("Invalid age entered.");
+                return;
+            }
+
+            // Backend ko PATCH request bhejein
+            await fetch(`${API_URL}/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ age: parseInt(newAge) })
+            });
+
+            // List ko refresh karein taaki naya data screen par nazar aaye
+            fetchUsers(); 
+        }
+        // Load users on startup
+        fetchUsers();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+Project 4: Serverless Calculator Deployment Verification
+
+1. PowerShell Testing
+---------------------
+$body = @{
+    rideId   = "ride-777"
+    baseFare = 2.50
+    distance = 12.4
+    time     = 22.0
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "https://[REDACTED].execute-api.us-east-1.amazonaws.com/prod/calculate" -Method Post -Body $body -ContentType "application/json"
+
+rideId   totalFare
+------   ---------
+ride-777      32.1
+
+2. cURL Testing
+---------------
+curl.exe --% -X POST "https://[REDACTED].execute-api.us-east-1.amazonaws.com/prod/calculate" -H "Content-Type: application/json" -d "{\"rideId\": \"ride-777\", \"baseFare\": 2.50, \"distance\": 12.4, \"time\": 22.0}"
+{"rideId":"ride-777","totalFare":32.1}
