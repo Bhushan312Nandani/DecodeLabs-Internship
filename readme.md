@@ -56,6 +56,7 @@ Here is an overview of the included modules:
 ---
 
 ## Notes on Uploads & Media
-- Many projects contain demonstration videos (`.mp4`). Due to size constraints, these are managed separately (e.g., via Git LFS or external hosting) and might not be present in the direct source tree.
-- Private `.env` files and AWS credentials have been replaced with `.env.example` templates to protect sensitive cloud resources.
+- **Demonstration Videos (`.mp4`)**: Many projects contain large demonstration videos. These have been securely uploaded using Git Large File Storage (LFS). 
+  - *Note:* If you see a message on GitHub saying **"(Sorry about that, but we can’t show files that are this big right now.)"**, it simply means the video is too large to stream directly in the browser. To watch it, click the **"Download raw file"** button to download and play the full video locally!
+- **Sensitive Data**: Private `.env` files and AWS credentials have been replaced with `.env.example` templates to protect sensitive cloud resources.
 - Folders with large datasets, PDFs, or raw resources have been explicitly excluded in the global `.gitignore`.

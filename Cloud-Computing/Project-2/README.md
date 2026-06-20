@@ -10,7 +10,7 @@ An AWS EC2 instance setup and deployment demonstration.
 - Basic server setup and configuration
 
 > 📹 Full demo recorded — video shows the complete EC2 setup process step by step.  
-> *(Video file available locally — too large for direct GitHub upload)*
+> *Note on GitHub Viewer:* Because the `Ec2-machines.mp4` video is large (~185MB), GitHub cannot stream it directly in the browser window. To watch the video, click the **"Download raw file"** button on the file page!
 
 ## Key Concepts
 
