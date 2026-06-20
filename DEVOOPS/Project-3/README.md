@@ -14,9 +14,21 @@ A fully automated CI/CD pipeline built using GitHub Actions. It tests, lints, an
 docker-compose up --build
 ```
 
-## GitHub Actions
+## GitHub Actions & Required Secrets
 
-The pipeline is defined in `.github/workflows/`. It will automatically trigger when code is pushed to the repository.
+The pipeline is defined in `.github/workflows/ci-cd.yml`. It automatically triggers when code is pushed to the repository.
+
+To make the deployment stage of the pipeline work, you must configure the following **Secrets** in your GitHub repository (go to **Settings** → **Secrets and variables** → **Actions**):
+
+| Secret Name | Description |
+|---|---|
+| `DOCKERHUB_USERNAME` | Your Docker Hub username. |
+| `DOCKERHUB_TOKEN` | A personal access token from Docker Hub. |
+| `PROD_SERVER_IP` | The IP address of your production server (e.g., AWS EC2). |
+| `PROD_SERVER_USER` | The SSH username for the server (e.g., `ubuntu` or `ec2-user`). |
+| `PROD_SSH_PRIVATE_KEY` | The raw text contents of your `.pem` SSH private key. |
+
+*Note: Without these secrets, the linting and testing stages will run successfully, but the Docker build and SSH deployment stages will fail.*
 
 ## Files
 
