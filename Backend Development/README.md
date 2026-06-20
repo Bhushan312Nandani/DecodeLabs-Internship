@@ -1,13 +1,14 @@
-# Backend Development Projects
+# 🌐 Backend Development
 
-Full-stack and backend projects built during the DECODE-LAB program using Node.js, Python, and Express.
+## Overview
+**The Goal:** To build secure, fast, and reliable server-side logic that powers web applications.
 
-## Projects
+* **For Non-Technical Readers:** If the frontend is the "paint and steering wheel" of a car, the backend is the engine. These projects act as the engine—handling user logins securely, talking to databases, and fetching live weather data from the internet.
+* **For Technical Readers:** RESTful APIs built with Node.js and Express, emphasizing middleware architecture, JWT token security, and asynchronous external API requests.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Express/](./Express/) | Basic Express.js learning module | Node.js, Express |
-| [Project-2 Frontend/](./Project-2%20Frontend/) | HTML frontend interface | HTML, CSS |
-| [Project-3/](./Project-3/) | Secure JWT Authentication API | Node.js, Express, JWT |
-| [Project-4/](./Project-4/) | Weather API Backend | Node.js, Express, OpenWeatherMap |
-| [Python/](./Python/) | Python backend scripts | Python |
+## Projects Included
+
+1. **[Project-3: Secure JWT Authentication API](./Project-3/)**
+   * A Node.js user authentication system. Uses JSON Web Tokens (JWT) and custom middleware to restrict access so that regular `users` and `admins` only see the data they are authorized to see.
+2. **[Project-4: Weather API Backend](./Project-4/)**
+   * An Express.js server that securely manages a private API key to fetch real-time global weather data from OpenWeatherMap, serving it back to a frontend interface.

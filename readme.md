@@ -1,62 +1,53 @@
-# DecodeLabs Internship Projects
+# 🚀 DecodeLabs Engineering Internship Portfolio
 
-This repository contains all the projects completed during the DecodeLabs Internship program. It spans multiple domains including Artificial Intelligence, Blockchain, Cloud Computing, Cyber Security, DevOps, Frontend/Backend/Full-Stack Development, Java, Python, and Robotics.
+Welcome to my software engineering portfolio! This repository showcases the real-world projects I built during my internship at DecodeLabs. 
 
-## Project Structure
+My work spans across multiple technology domains, demonstrating my ability to build full-stack web applications, deploy secure cloud infrastructure, train artificial intelligence models, and automate complex deployment pipelines.
 
-The repository is organized by domain, and each domain contains multiple projects. Some resource-heavy or proprietary folders have been excluded from this upload for security and size considerations.
+## 📁 Portfolio Domains
 
-Here is an overview of the included modules:
+### 🧠 [Artificial Intelligence](./AI/)
+* **For Non-Technical Readers:** Smart systems that can chat with users and automatically categorize data.
+* **For Technical Readers:** Implementations of K-Nearest Neighbors (KNN) ML classifiers and fuzzy-string matching algorithms using Python, scikit-learn, and Gradio.
 
-### 🧠 [AI (Artificial Intelligence)](./AI/)
-- **Project-1**: Rule-Based Chatbot with fuzzy matching.
-- **Project-2**: KNN Iris Flower Classifier.
+### ☁️ [Cloud Computing](./Cloud-Computing/)
+* **For Non-Technical Readers:** Highly scalable applications hosted on Amazon's internet servers.
+* **For Technical Readers:** Serverless event-driven architectures utilizing AWS Lambda, S3, API Gateway, SQS, and DynamoDB (built with Python and Go/AWS CDK).
+
+### ⚙️ [DevOps & CI/CD](./DEVOOPS/)
+* **For Non-Technical Readers:** "Software Factories" that automatically test and deliver code to production servers without human intervention.
+* **For Technical Readers:** Fully automated CI/CD pipelines using GitHub Actions, Docker containerization, and secure SSH deployments to EC2 instances.
+
+### 🛡️ [Cyber Security](./Cyber-Security/)
+* **For Non-Technical Readers:** Tools to scan networks for vulnerabilities and encrypt private messages.
+* **For Technical Readers:** Python-based network scanners, end-to-end RSA encryption engines, and Man-in-the-Middle (MITM) attack simulations.
+
+### 🔗 [Blockchain](./Block-Chain/)
+* **For Non-Technical Readers:** Decentralized digital ledgers and unhackable voting systems.
+* **For Technical Readers:** Custom Python Proof-of-Work blockchain simulations (demonstrating 51% attacks) and Solidity-based smart contracts for decentralized voting.
 
 ### 🌐 [Backend Development](./Backend%20Development/)
-- Node.js, Express, and Python backend APIs.
-- **Project-3**: Secure JWT Authentication API.
-- **Project-4**: Weather API Backend.
-
-### 🔗 [Block-Chain](./Block-Chain/)
-- **Project-1**: Python Blockchain Simulator (Proof of Work & 51% Attack Demo).
-- **Project-2**: Solidity Voting Protocol Smart Contract.
-
-### ☁️ [Cloud-Computing](./Cloud-Computing/)
-- Serverless architecture on AWS.
-- **Project-1**: Serverless Resume Uploader via Lambda & S3.
-- **Project-3**: Serverless Database Proxy & Admin Dashboard (Intercepting write queries).
-- **Project-4**: Serverless Calculator with Audit Logging using AWS CDK, Go, SQS, and DynamoDB.
-
-### 🛡️ [Cyber-Security](./Cyber-Security/)
-- **Project-1**: Web-based Network Security Scanner App.
-- **Project-2**: Cryptography module featuring RSA, Caesar Cipher, and MITM Attack simulation.
-
-### ⚙️ [DEVOOPS](./DEVOOPS/)
-- CI/CD, Containerization, and Automation.
-- **Project-1**: Introduction to DevOps Scripts.
-- **Project-2**: Containerized Flask Web Application using Docker.
-- **Project-3**: Automated GitHub Actions CI/CD Pipeline.
+* **For Non-Technical Readers:** The "brains" behind websites that handle user logins, security, and live data (like weather forecasts).
+* **For Technical Readers:** Node.js and Express REST APIs featuring role-based JWT authentication middleware and external API integrations.
 
 ### 🎨 [Frontend & Full-Stack](./Frontend-Development/)
-- HTML, CSS, JavaScript, and Node.js applications focusing on responsive layouts and full-system integrations.
+* **For Non-Technical Readers:** Beautiful, responsive websites and end-to-end applications you can interact with.
+* **For Technical Readers:** Responsive HTML/CSS/JS interfaces integrated with backend APIs.
 
-### ☕ [JAVA](./JAVA/)
-- Object-Oriented Programming, algorithms, and Spring Boot applications.
-- Features tools like a Grade Calculator and CI/CD integrated pipelines.
+### ☕ [Java Engineering](./JAVA/)
+* **For Non-Technical Readers:** Fast, enterprise-grade software calculators and business logic.
+* **For Technical Readers:** Object-Oriented Java applications and Spring Boot microservices with integrated Maven CI/CD pipelines.
 
-### 🐍 [PYTHON](./PYTHON/)
-- Diverse Python applications.
-- **Project-1**: Flask Web App.
-- **Project-2**: Bank Expense Tracker (Prisma ORM & Terminal).
-- **Project-3**: Algorithmic Trading Engine.
+### 🐍 [Python Engineering](./PYTHON/)
+* **For Non-Technical Readers:** Automated trading bots and financial expense trackers.
+* **For Technical Readers:** Flask web apps, Algorithmic Trading Engines, and PostgreSQL database integrations using the Prisma ORM.
 
-### 🤖 [Robotics-Automation](./Robotics-Automation/)
-- Automation scripts and ROS2/Gazebo Workspace simulations.
+### 🤖 [Robotics & Automation](./Robotics-Automation/)
+* **For Non-Technical Readers:** Visual factory inspectors and simulated robot arms.
+* **For Technical Readers:** Computer Vision (OpenCV) automated defect inspection systems and ROS2 Gazebo robotic arm physics simulations.
 
 ---
 
-## Notes on Uploads & Media
-- **Demonstration Videos (`.mp4`)**: Many projects contain large demonstration videos. These have been securely uploaded using Git Large File Storage (LFS). 
-  - *Note:* If you see a message on GitHub saying **"(Sorry about that, but we can’t show files that are this big right now.)"**, it simply means the video is too large to stream directly in the browser. To watch it, click the **"Download raw file"** button to download and play the full video locally!
-- **Sensitive Data**: Private `.env` files and AWS credentials have been replaced with `.env.example` templates to protect sensitive cloud resources.
-- Folders with large datasets, PDFs, or raw resources have been explicitly excluded in the global `.gitignore`.
+## 📹 Note on Video Demonstrations
+Many of these projects contain full video demonstrations (`.mp4`). Because these files are large, they are managed via **Git Large File Storage (LFS)**. 
+*If you see a message saying "we can’t show files that are this big right now" on GitHub, simply click the **"Download raw file"** button to watch the video locally!*

@@ -1,33 +1,14 @@
-# Cyber Security Projects
+# 🛡️ Cyber Security
 
-Cybersecurity projects built during the DECODE-LAB program, covering encryption, cryptographic attacks, and network security simulations.
+## Overview
+**The Goal:** To understand how to protect networks, encrypt sensitive data, and simulate how hackers exploit vulnerabilities.
 
-## Projects
+* **For Non-Technical Readers:** This folder contains tools that can scan a Wi-Fi network to see what devices are connected, and encryption programs that scramble messages so only the intended recipient can read them.
+* **For Technical Readers:** Python-based network socket scanners, cryptographic algorithm implementations from scratch, and simulation of network interception techniques.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Project-1](./Project-1/) | Network Scanner & Security App | Python, JS, HTML |
-| [Project-2](./Project-2/) | RSA, Caesar Cipher & MITM Attack | Python |
+## Projects Included
 
----
-
-## Project-1 — Network Security App
-
-A web-based network scanner and security monitoring application.
-
-**Run:**
-```bash
-python Project-1/main.py
-# Open index.html in browser
-```
-
----
-
-## Project-2 — Cryptography & Attack Simulations
-
-Implements RSA encryption, Caesar cipher, and Man-in-the-Middle (MITM) attack simulation.
-
-**Run:**
-```bash
-python Project-2/Main.py
-```
+1. **[Project-1: Network Security Scanner](./Project-1/)**
+   * A Python/JS web application that scans network IP addresses and ports to monitor active services and identify potential vulnerabilities.
+2. **[Project-2: Cryptography & Attack Simulations](./Project-2/)**
+   * Implements end-to-end RSA encryption (public/private key generation), a Caesar Cipher (with a brute-force decryption tool), and a simulated Man-in-the-Middle (MITM) attack intercepting communications.

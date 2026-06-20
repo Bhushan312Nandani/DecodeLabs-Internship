@@ -1,12 +1,11 @@
-# Java Projects
+# ☕ Java Engineering
 
-Object-Oriented Programming and backend projects built with Java.
+## Overview
+**The Goal:** To build robust, enterprise-grade software applications using Object-Oriented principles.
 
-## Projects
+* **For Non-Technical Readers:** Java is the language used by large banks and enterprises. These projects demonstrate my ability to build highly reliable, math-heavy applications like calculators and banking systems.
+* **For Technical Readers:** Object-Oriented Programming (OOP) architectures using core Java, design patterns, and Spring Boot frameworks. Features integrated Maven build pipelines.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Project-1](./Project-1/) | Java fundamentals and algorithms | Java |
-| [Project-2](./Project-2/) | Grade Calculator (Standard & Spring Boot) | Java, Spring Boot |
-| [Project-3](./Project-3/) | Java OOP project | Java |
-| [Project-4](./Project-4/) | Spring Boot application | Java, Spring Boot, Maven |
+## Projects Included
+* Various Object-Oriented implementations including an automated Grade Calculator, a Currency Exchange framework, and an ATM Banking Simulation.
+* *(Check inside the specific project folders for code and video demonstrations of the tools in action)*

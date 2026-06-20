@@ -1,50 +1,14 @@
-# Blockchain Projects
+# 🔗 Blockchain Engineering
 
-Blockchain simulations and smart contracts built during the DECODE-LAB program.
+## Overview
+**The Goal:** To build decentralized, tamper-proof systems using cryptography and distributed ledgers.
 
-## Projects
+* **For Non-Technical Readers:** This contains a miniature version of the technology behind Bitcoin. It demonstrates how "miners" secure the network, and proves how a hacker would need to control 51% of the network to successfully fake a transaction.
+* **For Technical Readers:** A ground-up Python Proof-of-Work blockchain, and Ethereum smart contract development using Solidity.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Project-1](./Project-1/) | Blockchain Simulator with 51% Attack Demo | Python |
-| [Project-2](./Project-2/) | Voting Smart Contract | Solidity |
+## Projects Included
 
----
-
-## Project-1 — Blockchain Simulator
-
-A Python simulation of a peer-to-peer blockchain network demonstrating block creation, chain validation, and the 51% attack vector.
-
-### How to Run
-
-```bash
-python Project-1/Main.py
-```
-
-### Files
-
-| File | Description |
-|---|---|
-| `Block.py` | Block data structure |
-| `Blockchain.py` | Chain logic + proof of work |
-| `Node.py` | Network node simulation |
-| `51%_Attack.py` | Attack simulation |
-| `Main.py` | Entry point |
-
----
-
-## Project-2 — Voting Smart Contract
-
-A Solidity voting protocol smart contract with scenario testing.
-
-### Files
-
-| File | Description |
-|---|---|
-| `VotingProtocol.sol` | Main Solidity contract |
-| `VotingProtocol.json` | Compiled contract ABI |
-| `Scenario.json` | Test scenarios |
-
-### Deploy
-
-Use [Remix IDE](https://remix.ethereum.org/) to deploy `VotingProtocol.sol`.
+1. **[Project-1: Python Blockchain & 51% Attack](./Project-1/)**
+   * A peer-to-peer blockchain simulation featuring block hashing, mining difficulty, and a simulated "Smart Hacker" executing a successful 51% attack by out-mining the honest network.
+2. **[Project-2: Voting Smart Contract](./Project-2/)**
+   * A Solidity (`.sol`) decentralized application (dApp) that allows registered wallet addresses to securely cast unchangeable votes for specific proposals.

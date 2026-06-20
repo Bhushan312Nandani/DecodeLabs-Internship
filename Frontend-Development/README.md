@@ -1,13 +1,11 @@
-# Frontend Development Projects
+# 🎨 Frontend & Full-Stack Development
 
-Static websites and user interfaces built during the DECODE-LAB program.
+## Overview
+**The Goal:** To build beautiful, interactive, and responsive web applications that users can directly engage with.
 
-## Projects
+* **For Non-Technical Readers:** This is the visual part of the websites you interact with every day—buttons, layouts, and colors, as well as full complete web applications.
+* **For Technical Readers:** Implementations of modern HTML5, CSS3, Vanilla JavaScript, and full-stack integrations that connect frontend components to backend databases and APIs.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Project-1](./Project-1/) | Basic HTML/CSS landing page | HTML, CSS |
-| [Project-2](./Project-2/) | Responsive webpage layout | HTML, CSS |
-| [Project-3](./Project-3/) | Static site project | HTML, CSS |
-
-All projects can be viewed by opening the respective `index.html` file in a web browser.
+## Focus Areas
+* **Responsive Design:** Ensuring interfaces work perfectly on both desktop monitors and mobile phones.
+* **API Integration:** Using JavaScript `fetch` and `async/await` to pull live data into the UI dynamically without reloading the page.

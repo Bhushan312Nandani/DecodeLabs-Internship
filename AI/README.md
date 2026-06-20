@@ -1,40 +1,14 @@
-# AI — Artificial Intelligence Projects
+# 🧠 Artificial Intelligence
 
-A collection of AI projects built during the DECODE-LAB program, covering rule-based systems and machine learning classifiers.
+## Overview
+**The Goal:** To build intelligent systems capable of processing human input and making data-driven decisions.
 
-## Projects
+* **For Non-Technical Readers:** This folder contains a smart chatbot that understands what you mean even if you make typos, and an AI that can identify different species of flowers based on their measurements.
+* **For Technical Readers:** Implementations of rule-based natural language processing using fuzzy matching, and supervised machine learning (K-Nearest Neighbors) using Python and `scikit-learn`.
 
-| Project | Description | Tech Stack |
-|---|---|---|
-| [Project-1](./Project-1/) | Rule-Based Chatbot with Fuzzy Matching | Python, Gradio |
-| [Project-2](./Project-2/) | Iris Flower Classifier (KNN) | Python, scikit-learn |
+## Projects Included
 
----
-
-## Project-1 — Rule-Based Chatbot
-
-A deterministic chatbot that uses fuzzy string matching to handle user typos, served via a Gradio web interface.
-
-### How to Run
-
-```bash
-pip install gradio
-python Project-1/RuleBased.py
-```
-
-Opens at `http://localhost:7860`
-
----
-
-## Project-2 — KNN Iris Classifier
-
-K-Nearest Neighbors classifier trained on the UCI Iris dataset. Outputs accuracy, confusion matrix, and F1 score.
-
-### How to Run
-
-```bash
-pip install pandas scikit-learn
-python Project-2/Project_2.py
-```
-
-Output: accuracy %, confusion matrix, and F1 score printed to terminal.
+1. **[Project-1: Rule-Based Chatbot](./Project-1/)**
+   * A Gradio web app that uses the `difflib` library to perform fuzzy-string matching, allowing it to understand misspelled user intents.
+2. **[Project-2: Iris Classifier](./Project-2/)**
+   * An ML pipeline that scales data and trains a KNN classifier on the UCI Iris dataset, outputting precision metrics (Accuracy, F1-Score, Confusion Matrix).
